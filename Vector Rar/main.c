@@ -55,16 +55,16 @@ void arraySum( char *input, char *output, int minimumLenght, int maximumLenght) 
         while( ftell( inputFile) != endOfFile) {
             fread( &sparsedArray1.ItemsNO, sizeof(int), 1, inputFile);
             fread( &sparsedArray1.nenullItemsNO, sizeof(int), 1, inputFile);
-        
+            
             sparsedArray1.nenullItems = realloc( sparsedArray1.nenullItems,
                                                 sparsedArray1.nenullItemsNO * sizeof(int));
             sparsedArray1.nenullItemsPOZ = realloc( sparsedArray1.nenullItemsPOZ,
-                                                sparsedArray1.nenullItemsNO * sizeof(int));
-        
+                                                   sparsedArray1.nenullItemsNO * sizeof(int));
+            
             for ( i=0; i < sparsedArray1.nenullItemsNO; i++) {
                 fread( &sparsedArray1.nenullItems[i], sizeof(int), 1, inputFile);
             }
-        
+            
             for ( i=0; i < sparsedArray1.nenullItemsNO; i++) {
                 fread( &sparsedArray1.nenullItemsPOZ[i], sizeof(int), 1, inputFile);
             }
@@ -77,7 +77,7 @@ void arraySum( char *input, char *output, int minimumLenght, int maximumLenght) 
         free( sparsedArray1.nenullItems);
         
         if ( arraysNumber != 0) {
-        
+            
             sparsedArray2 = calloc( arraysNumber, sizeof(sparseArray));
             
             fseek( inputFile, 0, SEEK_SET);
@@ -87,14 +87,14 @@ void arraySum( char *input, char *output, int minimumLenght, int maximumLenght) 
                 
                 if ( sparsedArray2[i].ItemsNO >= minimumLenght && sparsedArray2[i].ItemsNO <= maximumLenght) {
                     fread( &sparsedArray2[i].nenullItemsNO, sizeof(int), 1, inputFile);
-                
+                    
                     sparsedArray2[i].nenullItems = malloc(                                          sparsedArray2[i].nenullItemsNO * sizeof(int));
                     sparsedArray2[i].nenullItemsPOZ = malloc(                                                sparsedArray2[i].nenullItemsNO * sizeof(int));
-                
+                    
                     for ( j=0; j < sparsedArray2[i].nenullItemsNO; j++) {
                         fread( &sparsedArray2[i].nenullItems[j], sizeof(int), 1, inputFile);
                     }
-                
+                    
                     for ( j=0; j < sparsedArray2[i].nenullItemsNO; j++) {
                         fread( &sparsedArray2[i].nenullItemsPOZ[j], sizeof(int), 1, inputFile);
                     }
@@ -132,7 +132,7 @@ void arraySum( char *input, char *output, int minimumLenght, int maximumLenght) 
                 free( sparsedArray2[i].nenullItems);
                 free( sparsedArray2[i].nenullItemsPOZ);
             }
-
+            
             free( sparsedArray2);
         }
         else{
@@ -141,7 +141,7 @@ void arraySum( char *input, char *output, int minimumLenght, int maximumLenght) 
         
         fclose( inputFile);
         fclose( outputFile);
-    
+        
     }
 }
 
